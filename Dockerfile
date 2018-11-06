@@ -12,6 +12,7 @@ RUN apt-get update && \
         libpng-dev \
         zlib1g-dev \
 # Install required 3rd party tools
+        sendmail \
         graphicsmagick \
         ghostscript && \
 # Configure extensions

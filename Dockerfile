@@ -42,6 +42,10 @@ RUN cd /var/www/html && \
     touch FIRST_INSTALL && \
     chown -R www-data. .
 
+# WARNING, DANGER, ATTENTION:
+# THIS MIGHT BREAK, IF SWIFTMAILER EVER GETS UPDATED.
+COPY ./StreamBuffer.php /var/www/html/typo3_src-8.7.20/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/StreamBuffer.php
+
 # Configure volumes
 VOLUME /var/www/html/fileadmin
 VOLUME /var/www/html/typo3conf

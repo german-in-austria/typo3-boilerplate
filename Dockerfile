@@ -48,7 +48,7 @@ RUN cd /var/www/html && \
 COPY ./StreamBuffer.php /var/www/html/typo3_src-8.7.20/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/StreamBuffer.php
 
 # LOGGING
-RUN echo "error_log = /var/log/php-scripts.log" >> /usr/local/etc/php/conf.d/typo3.ini
+RUN echo "error_log = /var/log/php-scripts.log\nlog_errors = On" >> /usr/local/etc/php/conf.d/typo3.ini
 
 # Configure volumes
 VOLUME /var/www/html/fileadmin

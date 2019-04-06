@@ -31,7 +31,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /usr/src/*
 
 RUN cd /var/www/html && \
-    wget -O - https://get.typo3.org/8.7 | tar -xzf - && \
+    wget -O - https://get.typo3.org/8.7.24 | tar -xzf - && \
     ln -s typo3_src-* typo3_src && \
     ln -s typo3_src/index.php && \
     ln -s typo3_src/typo3 && \
@@ -45,7 +45,7 @@ RUN cd /var/www/html && \
 
 # WARNING, DANGER, ATTENTION:
 # THIS MIGHT BREAK, IF SWIFTMAILER EVER GETS UPDATED.
-COPY ./StreamBuffer.php /var/www/html/typo3_src-8.7.20/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/StreamBuffer.php
+COPY ./StreamBuffer.php /var/www/html/typo3_src-8.7.24/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/StreamBuffer.php
 
 # LOGGING
 RUN echo "error_log = /var/log/php-scripts.log\nlog_errors = On" >> /usr/local/etc/php/conf.d/typo3.ini

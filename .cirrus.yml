@@ -2,6 +2,12 @@ docker_builder:
   env: 
     DOCKER_PASSWORD: "ENCRYPTED[5de2d619730461bf933445392531d56bb960b75234244aef5431bd7036d3e4cce09600d5ba6895d8531803c39f7f35fa]"
     DOCKER_USERNAME: "ENCRYPTED[cf1b7fdd6f907579ec7e8990af4aee6b6da22cd03066d30b2c6e533a3c9149b7387bd0f2f1232d9cb4f2092a4a2b6d98]"
-  build_script: "curl -i -X POST -H \"Content-Type: application/json\" -d '{\"text\": \"Starting build: dioe/typo3-boilerplate\\n details: https://cirrus-ci.com/task/'$CIRRUS_TASK_ID'\"}' https://mm.dioe.at/hooks/9xkct75bzpbn3cm1kiut3jx1ur && docker build --cache-from dioe/typo3-boilerplate --tag dioe/typo3-boilerplate ."
-  login_script: "docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD"
-  push_script: "test $CIRRUS_BRANCH == \"master\" && docker push dioe/typo3-boilerplate && curl -i -X POST -H \"Content-Type: application/json\" -d '{\"text\": \"Cirrus CI built and pushed dioe/typo3-boilerplate\\n details: https://cirrus-ci.com/task/'$CIRRUS_TASK_ID'\"}' https://mm.dioe.at/hooks/9xkct75bzpbn3cm1kiut3jx1ur\n"
+  only_if: $CIRRUS_BRANCH == 'master' || $CIRRUS_BRANCH == 'typo-10'
+  build_script:
+    - "curl -i -X POST -H \"Content-Type: application/json\" -d '{\"text\": \"Starting build: dioe/typo3-boilerplate\\n details: https://cirrus-ci.com/task/'$CIRRUS_TASK_ID'\"}' https://mm.dioe.at/hooks/9xkct75bzpbn3cm1kiut3jx1ur"
+    - docker build --cache-from dioe/typo3-boilerplate --tag dioe/typo3-boilerplate:10 .
+  login_script:
+    - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+  push_script:
+    - "docker push dioe/typo3-boilerplate:10"
+    - "curl -i -X POST -H \"Content-Type: application/json\" -d '{\"text\": \"Cirrus CI built and pushed dioe/typo3-boilerplate\\n details: https://cirrus-ci.com/task/'$CIRRUS_TASK_ID'\"}' https://mm.dioe.at/hooks/9xkct75bzpbn3cm1kiut3jx1ur"

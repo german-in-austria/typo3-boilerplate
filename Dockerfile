@@ -68,6 +68,10 @@ RUN cd /var/www/html && \
     # touch FIRST_INSTALL && \
     chown -R www-data. .
 
+# WARNING, DANGER, ATTENTION:
+# THIS MIGHT BREAK, IF SWIFTMAILER EVER GETS UPDATED.
+COPY ./\TransportFactory.php /var/www/html/typo3_src-10.4.17/typo3/sysext/core/Classes/Mail/StreamBuffer.php
+
 # LOGGING
 RUN echo "error_log = /var/log/php-scripts.log\nlog_errors = On" >> /usr/local/etc/php/conf.d/typo3.ini
 

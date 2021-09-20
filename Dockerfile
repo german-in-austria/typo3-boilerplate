@@ -33,6 +33,7 @@ RUN apt-get update && \
         libzip-dev \
         zlib1g-dev \
 # Install required 3rd party tools
+        sendmail \
         graphicsmagick \
         ghostscript && \
 # Configure extensions

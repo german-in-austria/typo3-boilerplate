@@ -39,7 +39,7 @@ RUN apt-get update && \
 # Configure extensions
     docker-php-ext-configure gd --with-libdir=/usr/include/ --with-jpeg --with-freetype && \
     docker-php-ext-install -j$(nproc) mysqli soap gd zip opcache intl pgsql pdo_pgsql && \
-    echo 'always_populate_raw_post_data = -1\nmax_execution_time = 240\nmax_input_vars = 1500\nupload_max_filesize = 32M\npost_max_size = 32M' > /usr/local/etc/php/conf.d/typo3.ini && \
+    echo 'always_populate_raw_post_data = -1\nmax_execution_time = 240\nmax_input_vars = 1500\nupload_max_filesize = 128M\npost_max_size = 128M\ndate.timezone = Europe/Berlin' > /usr/local/etc/php/conf.d/typo3.ini && \
 # Configure Apache as needed
     a2enmod rewrite && \
     apt-get clean && \

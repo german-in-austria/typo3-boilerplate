@@ -118,6 +118,7 @@ class TransportFactory implements SingletonInterface, LoggerAwareInterface
                 $streamOptions = $stream->getStreamOptions();
                 $streamOptions['ssl']['verify_peer'] = false;
                 $streamOptions['ssl']['verify_peer_name'] = false;
+                $streamOptions['ssl']['allow_self_signed'] = true;
                 $stream->setStreamOptions($streamOptions);
                 // End: Add for dioe Mail
                 // Need authentication?

@@ -61,7 +61,6 @@ RUN cd /var/www/html && \
     ln -s typo3_src-* typo3_src && \
     ln -s typo3_src/index.php && \
     ln -s typo3_src/typo3 && \
-    cp ./\.htaccess .htaccess && \
     mkdir typo3temp && \
     mkdir typo3conf && \
     mkdir fileadmin && \
@@ -71,6 +70,7 @@ RUN cd /var/www/html && \
 
 # WARNING, DANGER, ATTENTION:
 # THIS MIGHT BREAK, IF SWIFTMAILER EVER GETS UPDATED.
+COPY ./\.htaccess /var/www/html/.htaccess
 COPY ./\TransportFactory.php /var/www/html/typo3_src-10.4.17/typo3/sysext/core/Classes/Mail/TransportFactory.php
 
 # LOGGING

@@ -272,8 +272,8 @@ AddDefaultCharset utf-8
         RewriteEngine On
 
         #################| 301 Weiterleitung von Nowww zu www sowie HTTP zu HTTPS
-        RewriteCond %{HTTP_HOST} !^www\. [NC]
-        RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [L,R=301]
+        RewriteCond %{HTTP_HOST} ^dioe.at 
+        RewriteRule (.*) https://www.dioe.at/$1 [R=301,L]
         RewriteCond %{HTTPS} !=on
         RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
